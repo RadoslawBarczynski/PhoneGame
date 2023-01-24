@@ -2,21 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AppOpenScript : MonoBehaviour
+public class BottomButtonsLogic : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> Apps;
 
     [SerializeField]
     private List<GameObject> PanelsToReturn;
+    private OpenAppLeanTween openedAppObject;
+
+    private void Update()
+    {
+        foreach (GameObject app in Apps)
+        {
+            if(app.activeSelf  == true)
+            {
+                openedAppObject = app.GetComponent<OpenAppLeanTween>();
+            }
+        }
+    }
 
 
     public void ReturnButton()
     {
-        foreach(GameObject app in Apps)
-        {
-            app.SetActive(false);
-        }
+        openedAppObject.CloseApp();
     }
 
     public void GoBackButton()
@@ -26,8 +35,5 @@ public class AppOpenScript : MonoBehaviour
             panel.SetActive(false);
         }
     }
-
-
-
-   
+  
 }
