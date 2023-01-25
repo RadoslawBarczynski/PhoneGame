@@ -5,11 +5,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject AlertBox;
     //Options App Variables
     public bool airplaneMode = true;
     public bool sound = true;
     public bool wifi = false;
     public bool bluetooth = false;
+
+
+    public void OpenAppButtonFunction()
+    {
+        if(wifi == true)
+        {
+            gameObject.GetComponent<ButtonAssingement>().SetOnPanel();
+        }
+        else
+        {
+            AlertBox.GetComponent<AlertWidnowScript>().SetDataToAlert(1);
+            AlertBox.SetActive(true);
+        }
+    }
 
     public void SetOptionVariables(int value)
     {
