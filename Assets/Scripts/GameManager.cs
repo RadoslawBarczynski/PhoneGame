@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject AlertBox;
+    [SerializeField] private GameObject AlertBox;
+    [SerializeField] private GameObject BackgroundPanel, IncomingCallPanel, AnsweredCallPanel, NumberField;
     //Options App Variables
     public bool airplaneMode = true;
     public bool sound = true;
@@ -14,18 +14,28 @@ public class GameManager : MonoBehaviour
     public bool bluetooth = false;
 
 
-    public void OpenAppButtonFunction()
+    public void IncomingCall()
     {
-        if(wifi == true)
-        {
-            gameObject.GetComponent<ButtonAssingement>().SetOnPanel();
-        }
-        else
-        {
-            AlertBox.GetComponent<AlertWidnowScript>().SetDataToAlert(1);
-            AlertBox.SetActive(true);
-        }
+        BackgroundPanel.SetActive(true);
+        NumberField.SetActive(true);
+        IncomingCallPanel.SetActive(true);
     }
+
+    public void DeclineCall()
+    {
+        NumberField.SetActive(false);
+        IncomingCallPanel.GetComponent<OpenAppLeanTween>().CloseApp();
+        AnsweredCallPanel.SetActive(false);
+        BackgroundPanel.GetComponent<OpenAppLeanTween>().CloseApp();
+    }
+
+    public void AcceptCall()
+    {
+        IncomingCallPanel.GetComponent<OpenAppLeanTween>().CloseApp();
+        AnsweredCallPanel.SetActive(true);
+        NumberField.GetComponent<AnsweredCallScript>().StartAnsweredAnimation();
+    }
+
 
     public void SetOptionVariables(int value)
     {
