@@ -5,25 +5,25 @@ using UnityEngine;
 public class ButtonAssingement : MonoBehaviour
 {
     [SerializeField]
-    private GameObject AlertBox;
-    public GameObject AppPanel;
-    private GameManager gameManager;
+    private GameObject _alertBox;
+    public GameObject appPanel;
+    private GameManager _gameManager;
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void SetOnPanel()
     {
-        if(gameManager.wifi == true)
+        if(_gameManager.wifi == true)
         {
-            AppPanel.SetActive(true);
+            appPanel.SetActive(true);
         }
         else
         {
-            AlertBox.GetComponent<AlertWidnowScript>().SetDataToAlert(1);
-            AlertBox.SetActive(true);
+            _alertBox.GetComponent<AlertWidnowScript>().SetDataToAlert(1);
+            _alertBox.SetActive(true);
         }
     }
 }

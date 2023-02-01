@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject AlertBox;
-    [SerializeField] private GameObject BackgroundPanel, IncomingCallPanel, AnsweredCallPanel, NumberField;
+    [SerializeField] private GameObject _alertBox;
+    [SerializeField] private GameObject _backgroundPanel, _incomingCallPanel, _answeredCallPanel, _numberField;
     //Options App Variables
     public bool airplaneMode = true;
     public bool sound = true;
@@ -16,24 +16,24 @@ public class GameManager : MonoBehaviour
 
     public void IncomingCall()
     {
-        BackgroundPanel.SetActive(true);
-        NumberField.SetActive(true);
-        IncomingCallPanel.SetActive(true);
+        _backgroundPanel.SetActive(true);
+        _numberField.SetActive(true);
+        _incomingCallPanel.SetActive(true);
     }
 
     public void DeclineCall()
     {
-        NumberField.SetActive(false);
-        IncomingCallPanel.GetComponent<OpenAppLeanTween>().CloseApp();
-        AnsweredCallPanel.SetActive(false);
-        BackgroundPanel.GetComponent<OpenAppLeanTween>().CloseApp();
+        _numberField.SetActive(false);
+        _incomingCallPanel.GetComponent<OpenAppLeanTween>().CloseApp();
+        _answeredCallPanel.SetActive(false);
+        _backgroundPanel.GetComponent<OpenAppLeanTween>().CloseApp();
     }
 
     public void AcceptCall()
     {
-        IncomingCallPanel.GetComponent<OpenAppLeanTween>().CloseApp();
-        AnsweredCallPanel.SetActive(true);
-        NumberField.GetComponent<AnsweredCallScript>().StartAnsweredAnimation();
+        _incomingCallPanel.GetComponent<OpenAppLeanTween>().CloseApp();
+        _answeredCallPanel.SetActive(true);
+        _numberField.GetComponent<AnsweredCallScript>().StartAnsweredAnimation();
     }
 
 

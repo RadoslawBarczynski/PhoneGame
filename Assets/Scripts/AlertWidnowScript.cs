@@ -7,8 +7,6 @@ public class AlertWidnowScript : MonoBehaviour
 {
     [SerializeField] List<Alert> AllAlertsDatabase;
 
-    private Alert alert;
-
     public TextMeshProUGUI alertDecs;
 
 

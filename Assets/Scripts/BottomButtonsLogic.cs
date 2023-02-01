@@ -5,19 +5,19 @@ using UnityEngine;
 public class BottomButtonsLogic : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> Apps;
+    private List<GameObject> _apps;
 
     [SerializeField]
-    private List<GameObject> PanelsToReturn;
-    private OpenAppLeanTween openedAppObject;
+    private List<GameObject> _panelsToReturn;
+    private OpenAppLeanTween _openedAppObject;
 
     private void Update()
     {
-        foreach (GameObject app in Apps)
+        foreach (GameObject app in _apps)
         {
             if(app.activeSelf  == true)
             {
-                openedAppObject = app.GetComponent<OpenAppLeanTween>();
+                _openedAppObject = app.GetComponent<OpenAppLeanTween>();
             }
         }
     }
@@ -25,12 +25,12 @@ public class BottomButtonsLogic : MonoBehaviour
 
     public void ReturnButton()
     {
-        openedAppObject.CloseApp();
+        _openedAppObject.CloseApp();
     }
 
     public void GoBackButton()
     {
-        foreach(GameObject panel in PanelsToReturn)
+        foreach(GameObject panel in _panelsToReturn)
         {
             panel.SetActive(false);
         }
