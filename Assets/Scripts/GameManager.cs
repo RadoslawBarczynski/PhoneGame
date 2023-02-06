@@ -7,11 +7,15 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _alertBox;
     [SerializeField] private GameObject _backgroundPanel, _incomingCallPanel, _answeredCallPanel, _numberField;
+    [SerializeField] public GameObject pasteButton, codeText;
+    [SerializeField] public bool isCodeInCache = false;
     //Options App Variables
     public bool airplaneMode = true;
     public bool sound = true;
     public bool wifi = false;
     public bool bluetooth = false;
+
+    [SerializeField] public AlertWidnowScript alertWidnowScript;
 
 
     public void IncomingCall()
@@ -63,6 +67,38 @@ public class GameManager : MonoBehaviour
         {
             bluetooth = !bluetooth;
             return;
+        }
+    }
+
+    public void CopyCode()
+    {
+        isCodeInCache = true;
+    }
+
+    public void ShowPasteButton()
+    {
+        if(isCodeInCache == true)
+        {
+            pasteButton.SetActive(true);
+        }
+    }
+
+    public void ShowInsertedCode()
+    {
+        codeText.SetActive(true);
+        pasteButton.SetActive(false);
+    }
+
+    public void TryCode()
+    {
+        if(codeText.activeSelf == true)
+        {
+            Debug.Log("Correct");
+        }
+        else
+        {
+            _alertBox.SetActive(true);
+            alertWidnowScript.SetDataToAlert(2);
         }
     }
 }
