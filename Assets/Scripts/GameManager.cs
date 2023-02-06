@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _alertBox;
     [SerializeField] private GameObject _backgroundPanel, _incomingCallPanel, _answeredCallPanel, _numberField;
-    [SerializeField] public GameObject pasteButton, codeText;
+    [SerializeField] public GameObject pasteButton, codeText, copiedAlert, EndingPanel;
     [SerializeField] public bool isCodeInCache = false;
     //Options App Variables
     public bool airplaneMode = true;
@@ -17,6 +17,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public AlertWidnowScript alertWidnowScript;
 
+    private void Start()
+    {
+        StartCoroutine(callScriptDelay());
+    }
+
+    IEnumerator callScriptDelay()
+    {
+        yield return new WaitForSeconds(10f);
+        IncomingCall();
+    }
 
     public void IncomingCall()
     {
@@ -73,6 +83,14 @@ public class GameManager : MonoBehaviour
     public void CopyCode()
     {
         isCodeInCache = true;
+        copiedAlert.SetActive(true);
+        StartCoroutine(delay());
+    }
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        copiedAlert.GetComponent<OpenAppLeanTween>().CloseApp();
     }
 
     public void ShowPasteButton()
@@ -93,7 +111,7 @@ public class GameManager : MonoBehaviour
     {
         if(codeText.activeSelf == true)
         {
-            Debug.Log("Correct");
+            EndingPanel.SetActive(true);
         }
         else
         {

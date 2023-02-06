@@ -7,6 +7,8 @@ public class PasswordPanel : MonoBehaviour
     [SerializeField]
     private PasswordLogic passwordLogic;
     [SerializeField]
+    private GameObject callButton;
+    [SerializeField]
     private string Password;
     public string tempPassword;
     private bool isLocked = true;
@@ -51,6 +53,7 @@ public class PasswordPanel : MonoBehaviour
         if (tempPassword == Password)
         {
             Debug.Log("Correct");
+            callButton.SetActive(false);
             tempCointainer.SetActive(false);
             isLocked = false;
             box.LeanMoveLocalY(-Screen.height, 0.3f).setEaseInExpo().setOnComplete(OnComplete2);
